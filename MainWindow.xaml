@@ -1,0 +1,96 @@
+﻿<Window x:Class="CurrencyConversion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurrencyConversion"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="Starport" />
+                <ComboBox 
+                    ItemsSource="{Binding StarportClasses}" 
+                    SelectedItem="{Binding SelectedStarport, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                <TextBlock Text="Population"/>
+                <ComboBox 
+                    ItemsSource="{Binding PopulationClasses}"
+                    SelectedItem="{Binding SelectedPopulation, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                <TextBlock Text="Tech Level"/>
+                <ComboBox 
+                    ItemsSource="{Binding TechLevelClasses}" 
+                    SelectedItem="{Binding SelectedTechLevel, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
+                <TextBlock Text="Security Zone"/>
+                <ComboBox 
+                    ItemsSource="{Binding SecurityZoneClasses}"
+                    SelectedItem="{Binding SelectedSecurityZone}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4">
+                <TextBlock Text="Distance in parsec"/>
+                <TextBox Text="{Binding ParsecDistance}" Width="25"/>
+            </StackPanel>
+
+            <Button Grid.Column="0" Grid.Row="5" Content="Generate manifest"
+                    Command="{Binding GenerateManifestCommand}"/>
+            
+            <!-- col 1 -->
+            <TextBlock Text="Incidental Cargo" Grid.Column="1" Grid.Row="0"/>
+            <ItemsControl Grid.Column="1" Grid.Row="1"
+              ItemsSource="{Binding IncidentalCargoLines}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayText}" Margin="4,2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Minor Cargo" Grid.Column="1" Grid.Row="2"/>
+            <ItemsControl Grid.Column="1" Grid.Row="3"
+                ItemsSource="{Binding MinorCargoLines}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayText}" Margin="4,2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Major Cargo" Grid.Column="1" Grid.Row="4"/>
+            <ItemsControl Grid.Column="1" Grid.Row="5"
+                ItemsSource="{Binding MajorCargoLines}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayText}" Margin="4,2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+
+    </Grid>
+</Window>
